@@ -1,0 +1,32 @@
+#!/usr/bin/python3.11
+
+import sys
+from dateutil import parser
+import pyperclip
+
+def convert_dates():
+    output_dates = []
+    print("Enter dates (Ctrl+D to end):")
+    try:
+        while True:
+            try:
+                line = input()
+                date = parser.parse(line)
+                formatted_date = date.strftime("%Y-%m-%d %H:%M:%S")
+                print(formatted_date)
+                output_dates.append(formatted_date)
+            except ValueError:
+                print("Could not parse the date:", line)
+            except EOFError:
+                break
+    except KeyboardInterrupt:
+        pass
+    finally:
+        # Joining all formatted dates with a newline character and copying to clipboard
+        final_output = '\n'.join(output_dates)
+        pyperclip.copy(final_output)
+        print("Dates copied to clipboard.")
+
+if __name__ == "__main__":
+    convert_dates()
+
