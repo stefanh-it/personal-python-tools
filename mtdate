@@ -1,8 +1,8 @@
 #!/usr/bin/python3.11
 
-import sys
 from dateutil import parser
 import pyperclip
+
 
 def convert_dates():
     output_dates = []
@@ -27,6 +27,6 @@ def convert_dates():
         pyperclip.copy(final_output)
         print("Dates copied to clipboard.")
 
+
 if __name__ == "__main__":
     convert_dates()
-

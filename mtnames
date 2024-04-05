@@ -1,0 +1,32 @@
+#!/usr/bin/python3.11
+
+import pyperclip
+
+
+def convert_names():
+    output_names: list = []
+    line: str = ""
+    print("Enter Names (Ctrl-D to end):")
+    try:
+        while True:
+            try:
+                line = input()
+                line.split(" ", 1)
+                first_name = line[0]
+                last_name = line[1]
+                output_name = first_name + "\t" + last_name
+                output_names.append(output_name)
+            except ValueError:
+                print("Could not parse the name: ", line)
+            except EOFError:
+                break
+    except KeyboardInterrupt:
+        pass
+    finally:
+        final_output = '\n'.join(output_names)
+        pyperclip.copy(final_output)
+        print("Names copied to clipboard")
+
+
+if __name__ == "__main__":
+    convert_names()
